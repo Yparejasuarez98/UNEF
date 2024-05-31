@@ -1,0 +1,9 @@
+.width-buttons {
+    width: 45%;
+    height: 50px;
+}
+
+.primary-color-back {
+    background-color: var(--primary-color);
+    margin-top: 20px;
+}

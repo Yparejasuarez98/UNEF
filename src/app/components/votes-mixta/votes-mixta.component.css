@@ -1,0 +1,31 @@
+.primary-color-back {
+    background-color: var(--primary-color);
+}
+
+.color-primary {
+    font-weight: 500;
+}
+
+.span-text {
+    color: black;
+    font-weight: 500;
+}
+
+.title {
+    font-weight: 600;
+}
+
+.separator {
+    margin-right: 15px;
+}
+
+.content-card {
+    background-color: #F5B567;
+    border-radius: 30px;
+}
+
+@media (max-width: 960px) {
+    .color-primary {
+        font-size: 13px;
+    }
+}

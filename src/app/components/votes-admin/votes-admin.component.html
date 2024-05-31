@@ -1,0 +1,108 @@
+<mat-drawer-container class="example-container">
+    <mat-drawer #drawer class="example-sidenav" mode="side" opened fixedInViewport="true" fixedTopGap="top">
+        <img src="../../../assets/imgs/UNEF.png" alt="">
+        <a mat-list-item routerLink=".">Empresas asociadas</a>
+        <a mat-list-item routerLink=".">Votaciones</a>
+    </mat-drawer>
+
+    <mat-toolbar class="example-toolbar">
+        <button mat-icon-button (click)="drawer.toggle()"><mat-icon>menu</mat-icon></button>
+    </mat-toolbar>
+    <mat-sidenav-container>
+        <mat-sidenav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+            fixedTopGap="56">
+            <mat-nav-list>
+            </mat-nav-list>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <div class="container">
+                <h2 class="secondary-color">EMPRESAS ASOCIADAS</h2>
+                <form [formGroup]="formAdmin">
+                    <div class="d-flex">
+                        <div class="row">
+                            <mat-form-field class="col-lg-3 col-md-3 col-sm-6">
+                                <mat-label>Buscar Empresa</mat-label>
+                                <input type="text" matInput [formControl]="company" [matAutocomplete]="auto"
+                                    (keyup)="getEnterprise()">
+                                <mat-autocomplete #auto="matAutocomplete">
+                                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option.name">
+                                        {{ option.name }}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                            <mat-form-field class="col-lg-3 col-md-3 col-sm-6">
+                                <mat-label>NIF</mat-label>
+                                <input type="text" matInput formControlName="nif" [matAutocomplete]="nif"
+                                    formControlName="nif">
+                                <mat-autocomplete #nif="matAutocomplete" [displayWith]="displayFnNif">
+                                    @for (option of filteredNif | async; track option) {
+                                    <mat-option [value]="option">{{option}}</mat-option>
+                                    }
+                                </mat-autocomplete>
+                            </mat-form-field>
+                            <mat-form-field class="col-lg-2 col-md-2 col-sm-6">
+                                <mat-label>Sección</mat-label>
+                                <mat-select formControlName="section">
+                                    <mat-option value="option1">Option 1</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field class="col-lg-2 col-md-2 col-sm-6">
+                                <mat-label>Tipo</mat-label>
+                                <mat-select formControlName="type">
+                                    <mat-option value="option1">Vota</mat-option>
+                                    <mat-option value="option1">Delega</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <div class="col-lg-2 col-md-2 col-sm-6">
+                                <button class="button-filter" mat-raised-button>Buscar</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <table class="table mt-5">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col" class="color-primary">Empresa asociada</th>
+                            <th scope="col" class="color-primary">NIF</th>
+                            <th scope="col" class="color-primary">Sección</th>
+                            <th scope="col" class="color-primary">Email de contacto</th>
+                            <th scope="col" class="color-primary">Country</th>
+                            <th scope="col" class="color-primary">Código acceso</th>
+                            <th scope="col" class="color-primary">Asistencia</th>
+                            <th scope="col" class="color-primary">Tipo Vota/Delega</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- | paginate: { itemsPerPage: 10, currentPage: p } -->
+                        <tr>
+                            <td>Mark</td>
+                            <td>Ot1234567890to</td>
+                            <td>Otto</td>
+                            <td>Otto</td>
+                            <td>Otto</td>
+                            <td>Otto</td>
+                            <td>
+                                <section>
+                                    <mat-slide-toggle color="primary">
+                                    </mat-slide-toggle>
+                                </section>
+                            </td>
+                            <td>
+                                <mat-form-field>
+                                    <mat-label>Vota/Delega</mat-label>
+                                    <mat-select (selectionChange)="openDialog()">
+                                        <mat-option value="option1">Vota</mat-option>
+                                        <mat-option value="option3">Delega</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <pagination-controls (pageChange)="p = $event" previousLabel="Anterior"
+                    nextLabel="Siguiente"></pagination-controls>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+
+</mat-drawer-container>

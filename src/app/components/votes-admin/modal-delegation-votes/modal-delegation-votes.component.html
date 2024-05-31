@@ -1,0 +1,16 @@
+<div class="container">
+    <h5 class="mt-4 color-primary">
+        Indique a que empresa desea delegar sus {{votes}}
+        Votos de la Sección {{mixta}}
+    </h5>
+    <mat-form-field class="mt-3">
+        <mat-label>Vota/Delega</mat-label>
+        <mat-select>
+            <mat-option value="option1">Vota</mat-option>
+            <mat-option value="option3">Delega</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div class="mb-4">
+        <button mat-raised-button class="secondary-color-back white" (click)="redirect()">Confirmar</button>
+    </div>
+</div>

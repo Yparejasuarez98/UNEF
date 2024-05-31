@@ -1,0 +1,20 @@
+
+.vuelta-uno {
+    background-color: var(--background-color-button-missing) !important;
+    color: var(--color-white) !important; 
+    margin-right: 50px;
+}
+
+.vuelta-dos {
+    background-color: var(--background-color-button-delegates) !important;
+    color: var(--color-white) !important; 
+}
+
+
+img {
+    width: 100%;
+}
+
+.content-img {
+    width: 20%;
+}

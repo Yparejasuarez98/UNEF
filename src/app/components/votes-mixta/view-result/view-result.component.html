@@ -1,0 +1,27 @@
+<div class="container">
+    <h1 class="secondary-color">Sección Mixta</h1>
+
+    <table class="table mt-5">
+        <thead>
+            <tr>
+                <th scope="col">Socio</th>
+                <th scope="col">Vuelta</th>
+                <th scope="col">Votos</th>
+                <th scope="col">% Votos</th>
+                <th scope="col">Representante</th>
+                <th scope="col">E-mail</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- | paginate: { itemsPerPage: 10, currentPage: p } -->
+            <tr>
+                <th>1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>Otto</td>
+                <td>Otto</td>
+            </tr>
+        </tbody>
+    </table>
+    <pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+</div>

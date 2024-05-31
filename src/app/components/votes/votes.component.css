@@ -1,0 +1,75 @@
+.content-votes {
+    margin-top: 100px;
+}
+
+.background-detail {
+    color: var(--primary-color);
+    font-weight: 650;
+    cursor: pointer;
+}
+
+.width {
+    width: 600px;
+}
+
+.input-socio {
+    margin-right: 30px;
+    width: 300px !important;
+}
+
+.button-save {
+    width: 250px;
+    height: 45px;
+    background-color: var(--primary-color);
+    color: var(--color-white);
+}
+
+.white {
+    font-weight: 500;
+}
+
+.color-primary {
+    font: 550;
+}
+
+@media (max-width: 760px) {
+    .width {
+        width: 500px;
+    }
+
+    .button-save {
+        height: 35px;
+    }
+
+    .button-total {
+        margin-right: 10px;
+        height: 45px;
+    }
+
+    .button-missing {
+        margin-right: 10px;
+        height: 45px;
+    }
+
+    .button-delegates {
+        margin-right: 10px;
+        height: 45px;
+    }
+
+    .button-register {
+        margin-right: 10px;
+        height: 45px;
+    }
+}
+
+@media (max-width: 520px) {
+    .width {
+        width: 350px;
+    }
+}
+
+@media (max-width: 375px) {
+    .width {
+        width: 280px;
+    }
+}
