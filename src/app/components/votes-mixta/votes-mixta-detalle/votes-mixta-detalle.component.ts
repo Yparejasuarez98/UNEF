@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -10,7 +11,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 @Component({
   selector: 'app-votes-mixta-detalle',
   standalone: true,
-  imports: [MatIconModule,MatFormFieldModule, MatInputModule, MatSelectModule, FormsModule, ReactiveFormsModule, MatSlideToggleModule, NgxPaginationModule,MatIconModule],
+  imports: [MatIconModule,MatFormFieldModule, MatInputModule, MatSelectModule, FormsModule, ReactiveFormsModule, MatSlideToggleModule, NgxPaginationModule,MatIconModule, MatButtonModule],
   templateUrl: './votes-mixta-detalle.component.html',
   styleUrl: './votes-mixta-detalle.component.css'
 })

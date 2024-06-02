@@ -1,8 +1,6 @@
-.button-save {
-    width: 250px;
+.button-search {
+    width: 18%;
     height: 45px;
-    background-color: var(--primary-color);
-    color: var(--color-white);
 }
 
 .input-field-large {

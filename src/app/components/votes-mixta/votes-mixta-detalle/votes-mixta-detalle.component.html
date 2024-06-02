@@ -1,83 +1,3 @@
-<!-- <div class="container">
-
-    <h1 class="secondary-color my-5">Sección Mixta - Detalle vuelta {{'#vuelta'}}</h1>
-
-    <form [formGroup]="formMixtaDetalle">
-        <div class="d-flex flex-wrap">
-            <div class="row w-100">
-                <div class="mr-4">
-                    <mat-form-field class="input-field-large">
-                        <mat-label>Empresa asociada votante</mat-label>
-                        <input type="text" matInput formControlName="associatedCompany">
-                    </mat-form-field>
-                    <mat-form-field class="input-field">
-                        <mat-label>NIF votante</mat-label>
-                        <input type="text" matInput formControlName="nif">
-                    </mat-form-field>
-                    <mat-form-field class="input-field">
-                        <mat-label>Tipo</mat-label>
-                        <mat-select formControlName="type">
-                            <mat-option value="option1">Option 1</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                    <button class="button-register button-save" mat-raised-button>Buscar</button>
-                </div>
-                <div class="mr-4 my-5 d-flex">
-                    <mat-form-field class="input-field-large">
-                        <mat-label>Empresa votada</mat-label>
-                        <input type="text" matInput formControlName="associatedVoted">
-                    </mat-form-field>
-                    <mat-form-field class="input-field">
-                        <mat-label>NIF votada</mat-label>
-                        <input type="text" matInput formControlName="nifVoted">
-                    </mat-form-field>
-                    <div class="icon-download">
-                        <span>
-                            <mat-icon class="color-primary">sim_card_download</mat-icon>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
-    <table class="table mt-5">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col" class="color-primary">Empresa asociada que voto</th>
-                <th scope="col" class="color-primary">NIF empresa que voto</th>
-                <th scope="col" class="color-primary">Tipo Vota/Delega</th>
-                <th scope="col" class="color-primary">Cantidad votos</th>
-                <th scope="col" class="color-primary">Empresa asociada a quien se le voto</th>
-                <th scope="col" class="color-primary">NIF empresa a quien se le voto</th>
-                <th scope="col" class="color-primary">Tipo Vota/Delega</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Mark</td>
-                <td>Ot1234567890to</td>
-                <td>Otto</td>
-                <td>Otto</td>
-                <td>Otto</td>
-                <td>Otto</td>
-                <td>
-                    <mat-form-field>
-                        <mat-label>Vota/Delega</mat-label>
-                        <mat-select>
-                            <mat-option value="option1">Vota</mat-option>
-                            <mat-option value="option3">Delega</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <pagination-controls (pageChange)="p = $event" previousLabel="Anterior"
-        nextLabel="Siguiente"></pagination-controls>
-</div>
- -->
-
-
 <div class="container">
     <h1 class="secondary-color my-5">Sección Mixta - Detalle vuelta {{'#vuelta'}}</h1>
 
@@ -99,7 +19,7 @@
                             <mat-option value="option1">Option 1</mat-option>
                         </mat-select>
                     </mat-form-field>
-                    <button class="button-register button-save" mat-raised-button>Buscar</button>
+                    <button class="button-search white primary-color-back" mat-raised-button>Buscar</button>
                 </div>
                 <div class="mr-4 my-5 d-flex w-100">
                     <div class="d-flex flex-grow-1">
