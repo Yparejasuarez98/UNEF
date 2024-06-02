@@ -22,39 +22,30 @@
                         <div class="row">
                             <mat-form-field class="col-lg-3 col-md-3 col-sm-6">
                                 <mat-label>Buscar Empresa</mat-label>
-                                <input type="text" matInput [formControl]="company" [matAutocomplete]="auto"
-                                    (keyup)="getEnterprise()">
-                                <mat-autocomplete #auto="matAutocomplete">
-                                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option.name">
-                                        {{ option.name }}
-                                    </mat-option>
-                                </mat-autocomplete>
+                                <input type="text" matInput [formControl]="company">
                             </mat-form-field>
                             <mat-form-field class="col-lg-3 col-md-3 col-sm-6">
                                 <mat-label>NIF</mat-label>
-                                <input type="text" matInput formControlName="nif" [matAutocomplete]="nif"
-                                    formControlName="nif">
-                                <mat-autocomplete #nif="matAutocomplete" [displayWith]="displayFnNif">
-                                    @for (option of filteredNif | async; track option) {
-                                    <mat-option [value]="option">{{option}}</mat-option>
-                                    }
-                                </mat-autocomplete>
+                                <input type="text" matInput formControlName="nif">
                             </mat-form-field>
                             <mat-form-field class="col-lg-2 col-md-2 col-sm-6">
                                 <mat-label>Sección</mat-label>
                                 <mat-select formControlName="section">
-                                    <mat-option value="option1">Option 1</mat-option>
+                                    @for (section of listSection; track $index) {
+                                    <mat-option [value]="section._id">{{section.section}}</mat-option>
+                                    }
                                 </mat-select>
                             </mat-form-field>
                             <mat-form-field class="col-lg-2 col-md-2 col-sm-6">
                                 <mat-label>Tipo</mat-label>
                                 <mat-select formControlName="type">
-                                    <mat-option value="option1">Vota</mat-option>
-                                    <mat-option value="option1">Delega</mat-option>
+                                    <mat-option>Selecciona un tipo</mat-option>
+                                    <mat-option value="default">Vota</mat-option>
+                                    <mat-option value="delegate">Delega</mat-option>
                                 </mat-select>
                             </mat-form-field>
                             <div class="col-lg-2 col-md-2 col-sm-6">
-                                <button class="button-filter" mat-raised-button>Buscar</button>
+                                <button class="button-filter primary-color-back white" mat-raised-button>Buscar</button>
                             </div>
                         </div>
                     </div>
@@ -66,40 +57,41 @@
                             <th scope="col" class="color-primary">NIF</th>
                             <th scope="col" class="color-primary">Sección</th>
                             <th scope="col" class="color-primary">Email de contacto</th>
-                            <th scope="col" class="color-primary">Country</th>
+                            <th scope="col" class="color-primary">País</th>
                             <th scope="col" class="color-primary">Código acceso</th>
                             <th scope="col" class="color-primary">Asistencia</th>
                             <th scope="col" class="color-primary">Tipo Vota/Delega</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- | paginate: { itemsPerPage: 10, currentPage: p } -->
+                        @for (enterprise of listEnterprise | paginate: { itemsPerPage: 10, currentPage: currentPage }; track $index ) {
                         <tr>
-                            <td>Mark</td>
-                            <td>Ot1234567890to</td>
-                            <td>Otto</td>
-                            <td>Otto</td>
-                            <td>Otto</td>
-                            <td>Otto</td>
+                            <td>{{enterprise.name}}</td>
+                            <td>{{enterprise.nif}}</td>
+                            <td>{{enterprise.section}}</td>
+                            <td>{{enterprise.email}}</td>
+                            <td>{{enterprise.contry}}</td>
+                            <td>{{enterprise.code}}</td>
                             <td>
                                 <section>
-                                    <mat-slide-toggle color="primary">
+                                    <mat-slide-toggle color="primary" [(ngModel)]="enterprise.status" (change)="updateEnterpriseAsist(enterprise)">
                                     </mat-slide-toggle>
                                 </section>
                             </td>
                             <td>
                                 <mat-form-field>
                                     <mat-label>Vota/Delega</mat-label>
-                                    <mat-select (selectionChange)="openDialog()">
-                                        <mat-option value="option1">Vota</mat-option>
-                                        <mat-option value="option3">Delega</mat-option>
+                                    <mat-select [(value)]="enterprise.type_vote" (selectionChange)="openDialog(enterprise)" >
+                                        <mat-option value="default">Vota</mat-option>
+                                        <mat-option value="delegate">Delega</mat-option>
                                     </mat-select>
                                 </mat-form-field>
                             </td>
                         </tr>
+                        }
                     </tbody>
                 </table>
-                <pagination-controls (pageChange)="p = $event" previousLabel="Anterior"
+                <pagination-controls (pageChange)="onPageChange($event)" previousLabel="Anterior"
                     nextLabel="Siguiente"></pagination-controls>
             </div>
         </mat-sidenav-content>

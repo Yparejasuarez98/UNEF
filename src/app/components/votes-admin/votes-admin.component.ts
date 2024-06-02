@@ -18,7 +18,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ModalDelegationVotesComponent } from './modal-delegation-votes/modal-delegation-votes.component';
 import { VotesAdminService } from './services/votes-admin.service';
 import Swal from 'sweetalert2';
-import { Enterprise } from './models/models';
+import { Enterprise, Section } from './models/models';
 
 @Component({
   selector: 'app-votes-admin',
@@ -33,13 +33,31 @@ export class VotesAdminComponent implements OnInit, OnDestroy {
   showFiller = true;
   mobileQuery: MediaQueryList;
   formAdmin: FormGroup;
-  filteredCompany: Observable<Enterprise[]>;
-  filteredNif: Observable<string[]>;
-  options: string[] = ['One', 'Two', 'Three'];
-  p = 1;
-  pageEnterprise = 1;
-  totalPageEnterprise = 100;
-  listEnterprise: Enterprise[] = [];
+  currentPage = 1;
+  itemsPerPage = 10;
+  totalPageEnterprise = 0;
+
+  // listEnterprise: Enterprise[] = [];
+  listEnterprise: Enterprise[] = [
+    {
+      "_id": "66577a74270a7a89a1375c48",
+      "address": "ViadelasDosCastillas33EdificioATICA28224PozuelodeAlarcon(Madrid)",
+      "city": "Madrid",
+      "code": "Jh9Ntc",
+      "contry": "España",
+      "cuota": 1,
+      "email": "alvaro.desimon@1komma5grad.com",
+      "name": "1KOMMA5DEGREESS.L.",
+      "nif": "B13765490",
+      "section": "Instaladores e Ingenierías",
+      "status": true,
+      "total_votes": 10,
+      "type_vote": "delegate",
+      "vote_delegate": 10
+    }
+  ];
+  listSection: Section[] = [];
+
   private _mobileQueryListener: () => void;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private fb: FormBuilder,
@@ -58,57 +76,77 @@ export class VotesAdminComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.filteredCompany = this.company!.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filterCompany(value))
-    );
+    // this.getSection();
 
-    this.filteredNif = this.nif!.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filterNif(value || '')),
-    );
   }
 
-  getEnterprise() {
-    this.votesAdminService.getEnterprise(this.section?.value, this.type?.value, this.pageEnterprise, this.totalPageEnterprise).subscribe({
-      next: (res: Enterprise[]) => {
-        this.listEnterprise = res;
+  updateEnterpriseAsist(enterprise: Enterprise) {
+    const assist = {
+      nif: enterprise.nif,
+      status: !enterprise.status
+    }
+    this.votesAdminService.updateEnterpriseAsist(assist).subscribe({
+      next: () => {
+
+      }, error: (err) => {
+        Swal.fire('Erro!', err.message, 'error');
+      }
+    });
+  }
+
+  getSection() {
+    this.votesAdminService.getSections().subscribe({
+      next: (res: Section[]) => {
+        this.listSection = res;
       }, error: (err) => {
         Swal.fire("Error!", err.message, 'error');
       }
     })
   }
 
-  openDialog() {
+  getEnterprise(currentPage: number) {
+    this.votesAdminService.getEnterprise(this.section?.value, this.type?.value, currentPage, this.itemsPerPage).subscribe({
+      next: (res: Enterprise[]) => {
+        this.listEnterprise = res;
+        this.totalPageEnterprise = res.length;
+      }, error: (err) => {
+        Swal.fire("Error!", err.message, 'error');
+      }
+    });
+  }
+
+  onPageChange(event: number): void {
+    this.currentPage = event;
+    this.getEnterprise(this.currentPage);
+  }
+
+  openDialog(enterprise: Enterprise) {
     const dialogRef = this.dialog.open(ModalDelegationVotesComponent, {
       data: {
-        animal: 'panda'
+        enterprise: enterprise
       },
       width: '350px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      debugger
+      this.updateDelegate(result)
       console.log(`Dialog result: ${result}`);
     });
   }
 
-  displayFnCompany(user: any): string {
-    return user && user.name ? user.name : '';
-  }
+  updateDelegate(enterprise: any) {
+    const assist = {
+      nif: enterprise.nif,
+      nif_delegate: enterprise.nif_delegate
+    }
+    this.votesAdminService.updateEnterpriseDelegate(assist).subscribe({
+      next: () => {
 
-  private _filterCompany(value: string): Enterprise[] {
-    const filterValue = value.toLowerCase();
-    return this.listEnterprise.filter(option => option.name.toLowerCase().includes(filterValue));
-  }
-
-  displayFnNif(user: any): string {
-    return user && user.name ? user.name : '';
-  }
-
-  private _filterNif(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+      }, error: (err) => {
+        Swal.fire('Erro!', err.message, 'error');
+      }
+    });
   }
 
 

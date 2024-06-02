@@ -11,6 +11,6 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   login(code: string): Observable<Login> {
-    return this.http.post<Login>(`/api/v1/login`, { code: code });
+    return this.http.post<Login>(`http://108.175.10.181:5000/api/v1/login`, { code: code });
   }
 }

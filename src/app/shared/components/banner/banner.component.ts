@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { NavigationEnd, Router } from '@angular/router';
 import { AuthService } from '../../../auth/services/auth.service';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-banner',
   standalone: true,
-  imports: [MatButtonModule],
+  imports: [MatButtonModule, MatSelectModule],
   templateUrl: './banner.component.html',
   styleUrl: './banner.component.css'
 })

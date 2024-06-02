@@ -12,7 +12,7 @@ export class VotesService {
   constructor(private http: HttpClient) { }
 
   getUserInfo(round: number): Observable<Votes> {
-    return this.http.get<ResponseData>(`/api/v1/user-info?round=${round}`).pipe(
+    return this.http.get<ResponseData>(`http://108.175.10.181:5000/api/v1/user-info?round=${round}`).pipe(
       map(res => {
         return res.data;
       })
@@ -20,7 +20,7 @@ export class VotesService {
   }
 
   getVowelList(round: number, name: string): Observable<Vowel[]> {
-    return this.http.get<ResponseData>(`/api/v1/vowel?round=${round}&name=${name}`).pipe(
+    return this.http.get<ResponseData>(`http://108.175.10.181:5000/api/v1/vowel?round=${round}&name=${name}`).pipe(
       map(res => {
         return res.data;
       })
@@ -28,6 +28,6 @@ export class VotesService {
   }
 
   asignVote(data: AsignVote): Observable<Result> {
-    return this.http.post<Result>(`/api/v1/vote`, data);
+    return this.http.post<Result>(`http://108.175.10.181:5000/api/v1/vote`, data);
   }
 }

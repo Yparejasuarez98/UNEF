@@ -5,8 +5,12 @@
             <img src="../../../../assets/imgs/2020_logo UNEF blanco.png" alt="" (click)="redirect()">
         </div>
         <div class="m-auto">
-            <button mat-raised-button class="vuelta-uno">Vuelta 1</button>
-            <button mat-raised-button class="vuelta-dos">Vuelta 2</button>
+            <mat-form-field >
+                <mat-label>Vuelta</mat-label>
+                <mat-select formControlName="section">
+                    <mat-option value="option1">Option 1</mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
     </div>
 </div>
