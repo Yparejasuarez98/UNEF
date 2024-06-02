@@ -1,0 +1,20 @@
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tittles {
+    display: flex;
+    flex-direction: column;
+}
+
+.seeDetail {
+    text-align: right;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.cursor{
+    cursor: pointer;
+}

@@ -1,5 +1,19 @@
 <div class="container">
-    <h1 class="secondary-color">Sección Mixta</h1>
+    <h1 class="secondary-color my-5">Sección Mixta</h1>
+
+    <div class="header-container">
+        <div class="tittles">
+            <div class="color-primary">
+                <h5>% Pase directo {{5+'%'}}</h5>
+            </div>
+            <div class="color-primary">
+                <h5>Cantidad votos Pase directo {{7}}</h5>
+            </div>
+        </div>
+        <div class="seeDetail color-primary" >
+            <p (click)="goToDetail()" class="cursor"><mat-icon>redo</mat-icon> Ver detalle de votación por socio</p>
+        </div>
+    </div>
 
     <table class="table mt-5">
         <thead>

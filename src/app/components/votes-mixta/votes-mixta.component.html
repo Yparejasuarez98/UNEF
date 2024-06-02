@@ -8,40 +8,40 @@
             <mat-card-content>
                 <div class="f-flex mb-4">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
                             <h2 class="white"> Mixta () </h2>
                         </div>
-                        <div class="col-6">
-                            <button mat-raised-button class="separator"> Vuelta 1</button>
-                            <button mat-raised-button> Vuelta 2</button>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <mat-form-field class="custom-select">
+                                <mat-label>VUELTAS</mat-label>
+                                <mat-select>
+                                    <mat-option value="1">Vuelta 1</mat-option>
+                                </mat-select>
+                            </mat-form-field>
                         </div>
                     </div>
                 </div>
-                <div class="d-flex">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-2 col-sm-6">
-                            <p class="color-primary">VOTOS TOTALES</p>
-                            <p class="span-text white">{{totalCompany}}</p>
+                <div class="row">
+                    <div class="col-lg-2 col-md-2 col-sm-6">
+                        <p class="color-primary">VOTOS TOTALES</p>
+                        <p class="span-text white">{{totalCompany}}</p>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-6">
+                        <p class="color-primary">EMPRESAS PARTICIPANTES</p>
+                        <p class="span-text white">{{totalVotes}}</p>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-6">
+                        <p class="color-primary">VOTOS EMITIDOS</p>
+                        <p class="span-text white">{{castVotes}}</p>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6">
+                        <div class="flex-column">
+                            <span class="color-primary">VOTOS PRESENCIAL: <span class="span-text white">{{votesInPerson}}</span></span>
+                            <span class="color-primary">VOTOS DELEGADOS: <span class="span-text white">{{delegateVotes}}</span></span>
                         </div>
-                        <div class="col-lg-2 col-md-2 col-sm-6">
-                            <p class="color-primary">EMPRESAS PARTICIPANTES</p>
-                            <p class="span-text white">{{totalVotes}}</p>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-sm-6">
-                            <p class="color-primary">VOTOS EMITIDOS</p>
-                            <p class="span-text white">{{castVotes}}</p>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-sm-6">
-                            <span class="color-primary">VOTOS PRESENCIAL: <span class="span-text white">
-                                    {{votesInPerson}}</span></span>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-sm-6">
-                            <span class="color-primary">VOTOS DELEGADOS: <span class="span-text white">
-                                    {{delegateVotes}}</span></span>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-sm-6">
-                            <button mat-raised-button class="primary-color-back white" (click)="redirect()">Ver resultados</button>
-                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-6">
+                        <button mat-raised-button class="primary-color-back white" (click)="redirect()">Ver resultados</button>
                     </div>
                 </div>
             </mat-card-content>
