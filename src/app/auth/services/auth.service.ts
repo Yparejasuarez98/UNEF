@@ -9,6 +9,6 @@ export class AuthService {
   constructor() { }
 
   getAuthToken(): Observable<boolean> {
-    return of(true)
+    return of(false)
   }
 }

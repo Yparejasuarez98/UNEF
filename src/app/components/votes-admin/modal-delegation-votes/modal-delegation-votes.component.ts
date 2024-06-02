@@ -35,7 +35,7 @@ export class ModalDelegationVotesComponent {
       next: (res) => {
         this.listEnterprise = res;
       }, error: (err) => {
-        Swal.fire("Error!", err.message, 'error');
+        Swal.fire("Error!", err.error.message, 'error');
       }
     });
   }

@@ -34,7 +34,7 @@ export class LoginComponent {
         localStorage.setItem('token', res.toke);
         this.router.navigateByUrl('/votos');
       }, error: (res) => {
-        Swal.fire('Error!', res.message, 'error');
+        Swal.fire('Error!', res.error.message, 'error');
       }
     });
   }

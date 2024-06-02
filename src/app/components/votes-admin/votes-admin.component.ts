@@ -19,13 +19,15 @@ import { ModalDelegationVotesComponent } from './modal-delegation-votes/modal-de
 import { VotesAdminService } from './services/votes-admin.service';
 import Swal from 'sweetalert2';
 import { Enterprise, Section } from './models/models';
+import { Router } from '@angular/router';
+import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'app-votes-admin',
   standalone: true,
   imports: [MatSidenavModule, MatButtonModule, MatIconModule, MatToolbarModule, MatListModule,
     MatAutocompleteModule, MatFormFieldModule, ReactiveFormsModule, FormsModule, AsyncPipe, MatInputModule,
-    MatSelectModule, NgxPaginationModule, MatSlideToggleModule, MatDialogModule],
+    MatSelectModule, NgxPaginationModule, MatSlideToggleModule, MatDialogModule, MatMenuModule],
   templateUrl: './votes-admin.component.html',
   styleUrl: './votes-admin.component.css'
 })
@@ -36,7 +38,7 @@ export class VotesAdminComponent implements OnInit, OnDestroy {
   currentPage = 1;
   itemsPerPage = 10;
   totalPageEnterprise = 0;
-
+  menus: any[] = ['Empresas asociadas', 'Votaciones'];
   // listEnterprise: Enterprise[] = [];
   listEnterprise: Enterprise[] = [
     {
@@ -61,7 +63,7 @@ export class VotesAdminComponent implements OnInit, OnDestroy {
   private _mobileQueryListener: () => void;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private fb: FormBuilder,
-    public dialog: MatDialog, private votesAdminService: VotesAdminService
+    public dialog: MatDialog, private votesAdminService: VotesAdminService, private router: Router
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -77,7 +79,18 @@ export class VotesAdminComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // this.getSection();
+  }
+  
+  redirect() {
+    this.router.navigateByUrl('/votos');
+  }
 
+  redirectCompany() {
+    this.router.navigateByUrl('votos');
+  }
+
+  redirectResults() {
+    this.router.navigateByUrl('resultados');
   }
 
   updateEnterpriseAsist(enterprise: Enterprise) {
@@ -86,10 +99,10 @@ export class VotesAdminComponent implements OnInit, OnDestroy {
       status: !enterprise.status
     }
     this.votesAdminService.updateEnterpriseAsist(assist).subscribe({
-      next: () => {
-
+      next: (res) => {
+        Swal.fire('Erro!', 'Asistencia confirmada', 'error');
       }, error: (err) => {
-        Swal.fire('Erro!', err.message, 'error');
+        Swal.fire('Erro!', err.error.message, 'error');
       }
     });
   }
@@ -99,7 +112,7 @@ export class VotesAdminComponent implements OnInit, OnDestroy {
       next: (res: Section[]) => {
         this.listSection = res;
       }, error: (err) => {
-        Swal.fire("Error!", err.message, 'error');
+        Swal.fire("Error!", err.error.message, 'error');
       }
     })
   }
@@ -110,7 +123,7 @@ export class VotesAdminComponent implements OnInit, OnDestroy {
         this.listEnterprise = res;
         this.totalPageEnterprise = res.length;
       }, error: (err) => {
-        Swal.fire("Error!", err.message, 'error');
+        Swal.fire("Error!", err.error.message, 'error');
       }
     });
   }
@@ -131,7 +144,6 @@ export class VotesAdminComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(result => {
       debugger
       this.updateDelegate(result)
-      console.log(`Dialog result: ${result}`);
     });
   }
 
@@ -144,11 +156,10 @@ export class VotesAdminComponent implements OnInit, OnDestroy {
       next: () => {
 
       }, error: (err) => {
-        Swal.fire('Erro!', err.message, 'error');
+        Swal.fire('Error!', err.error.message, 'error');
       }
     });
   }
-
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
