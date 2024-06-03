@@ -12,7 +12,8 @@
   font-weight: 600;
 }
 
-.button-filter {
-  color: var(--color-white);
-  background-color: var(--primary-color);
+.icon-download-large{
+  font-size: 42px;
+  cursor: pointer;
 }
+

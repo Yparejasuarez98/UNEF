@@ -15,7 +15,11 @@
 
 
 .icon-download-large{
-    font-size: 38px;
-    height: 48px;
-    width: 48px;
+    font-size: 42px;
+    cursor: pointer;
+}
+
+
+.d-flex.justify-content-end {
+    justify-content: flex-end !important;
 }
