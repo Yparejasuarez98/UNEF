@@ -1,6 +1,5 @@
 <div class="container">
     <h1 class="secondary-color my-5">Sección Mixta - Detalle vuelta {{'#vuelta'}}</h1>
-
     <form [formGroup]="formMixtaDetalle">
         <div class="d-flex flex-wrap">
             <div class="row w-100">
@@ -16,12 +15,14 @@
                     <mat-form-field class="input-field col-lg-4 col-md-4 col-sm-12">
                         <mat-label>Tipo</mat-label>
                         <mat-select formControlName="type">
-                            <mat-option value="option1">Option 1</mat-option>
+                            <mat-option>Selecciona un tipo</mat-option>
+                            <mat-option value="default">Vota</mat-option>
+                            <mat-option value="delegate">Delega</mat-option>
                         </mat-select>
                     </mat-form-field>
                     <button class="button-search white primary-color-back" mat-raised-button>Buscar</button>
                 </div>
-                <div class="mr-4 my-5 d-flex w-100">
+                <div class="mr-4 d-flex w-100">
                     <div class="d-flex flex-grow-1">
                         <mat-form-field class="input-field-large">
                             <mat-label>Empresa votada</mat-label>
@@ -32,18 +33,17 @@
                             <input type="text" matInput formControlName="nifVoted">
                         </mat-form-field>
                     </div>
-                    <div class="d-flex justify-content-end mx-5 my-3">
-                        <div class="icon-download">
-                            <span>
-                                <mat-icon class="color-primary icon-download-large">sim_card_download</mat-icon>
-                            </span>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </form>
-    
+    <div class="d-flex justify-content-end">
+        <div class="icon-download">
+            <span class="color-primary icon-download-large">
+                <i class="bi bi-file-earmark-excel-fill"></i>
+            </span>
+        </div>
+    </div>
     <table class="table">
         <thead class="thead-dark">
             <tr>

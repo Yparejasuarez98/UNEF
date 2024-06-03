@@ -1,5 +1,5 @@
 <mat-sidenav-container class="container-menu">
-    <mat-sidenav class="sidenav-menu" mode="side" opened>
+        <mat-sidenav class="sidenav-menu" mode="side" opened>
         <div class="user">
             <img src="../../../assets/imgs/UNEF.png" alt="Logo UNEF" class=" m-3"  (click)="redirect()"/>
         </div>
@@ -22,7 +22,7 @@
             </li>
         </ul>
     </mat-sidenav>
-
+    
     <mat-sidenav-content>
         <mat-toolbar class="header">
             <div class="nav-menu col">
@@ -65,11 +65,18 @@
                             </mat-select>
                         </mat-form-field>
                         <div class="col-lg-2 col-md-2 col-sm-6">
-                            <button class="button-filter primary-color-back white" mat-raised-button>Buscar</button>
+                            <button class="button-search white primary-color-back w-100" mat-raised-button>Buscar</button>
                         </div>
                     </div>
                 </div>
             </form>
+            <div class="d-flex justify-content-end my-3">
+                <div class="icon-download">
+                    <span class="color-primary icon-download-large">
+                        <i class="bi bi-file-earmark-excel-fill"></i>
+                    </span>
+                </div>
+            </div>
             <table class="table mt-5">
                 <thead class="thead-dark">
                     <tr>

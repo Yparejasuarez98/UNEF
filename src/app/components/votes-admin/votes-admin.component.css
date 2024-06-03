@@ -96,3 +96,8 @@ ul li a.active {
   border-bottom: 2px solid var(--primary-color);
 
 }
+.icon-download-large{
+  font-size: 42px;
+  cursor: pointer;
+}
+
