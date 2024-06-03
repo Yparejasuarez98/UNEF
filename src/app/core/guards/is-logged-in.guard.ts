@@ -11,5 +11,6 @@ export const isLoggedInGuard: CanMatchFn = (route, state) => {
   // rol.getRol().subscribe((rol: any) => {
   //   debugger
   // })
-  return authService.getAuthToken();
+  // return authService.getAuthToken();
+  return true
 };

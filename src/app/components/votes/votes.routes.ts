@@ -8,7 +8,7 @@ export const VOTES_ROUTES: Routes = [
     {
         path: '',
         component: VotesComponent,
-        canMatch: [isLoggedInGuard],
+        // canMatch: [isLoggedInGuard],
     },
     {
         path: '',

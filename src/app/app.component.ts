@@ -12,7 +12,6 @@ import { BannerComponent } from './shared/components/banner/banner.component';
 })
 export class AppComponent {
   title = 'UNEF';
-  showBanner = true;
 
   constructor() {
 
