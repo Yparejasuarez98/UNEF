@@ -10,8 +10,7 @@ export const httpLoadingInterceptor: HttpInterceptorFn = (req, next) => {
   if (token) {
     request = req.clone({
       setHeaders: {
-        Authorization: `${token}`,
-        'Content-Type': 'application/json',
+        Authorization: `${token}`
       },
     });
   } else {
