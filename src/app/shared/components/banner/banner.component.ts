@@ -17,6 +17,7 @@ export class BannerComponent {
   constructor(private router: Router, private authService: AuthService) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
+        debugger
         this.showNavbar = !(event.url === '/login');
       } 
     });

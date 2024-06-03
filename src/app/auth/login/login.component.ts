@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
 import { LoginService } from './services/login.service';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
-import { SharedService } from '../../shared/services/shared.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +18,7 @@ export class LoginComponent {
 
   code = new FormControl<string>('', Validators.required);
 
-  constructor(private router: Router, private loginService: LoginService, private sharedService: SharedService) {
+  constructor(private router: Router, private loginService: LoginService) {
 
   }
 
@@ -30,8 +29,7 @@ export class LoginComponent {
     }
     this.loginService.login(this.code.value!).subscribe({
       next: (res: any) => {
-        this.sharedService.setRol(res.type);
-        localStorage.setItem('token', res.toke);
+        localStorage.setItem('token', res.token);
         this.router.navigateByUrl('/votos');
       }, error: (res) => {
         Swal.fire('Error!', res.error.message, 'error');

@@ -21,10 +21,10 @@ import { Result } from '../../shared/models/response';
 })
 export class VotesComponent implements OnInit {
 
-  name = 'Yeison';
+  name = '';
   totalVotesAvailable = 0;
   round = 1;
-  nameSection = 'Daniela';
+  nameSection = '';
   filteredOptions: Observable<any[]>;
   dataUser: Votes;
   partner = new FormControl<string | any>('');
