@@ -7,7 +7,5 @@ export const routes: Routes = [
     {
         path: 'votos',
         loadChildren: () => import('./components/votes/votes.routes').then(m => m.VOTES_ROUTES)
-    },
-    // { path: 'Votaciones', component: VotesMixtaComponent, canActivate: [isLoggedInGuard] },
-    // { path: 'resultados', loadChildren: () => import('./components/votes-mixta/votes-mixta.routes').then(m => m.VOTES_MIXTA_ROUTES)},
+    }
 ];

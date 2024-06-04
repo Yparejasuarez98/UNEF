@@ -23,7 +23,7 @@ export class VotesComponent implements OnInit {
 
   name = '';
   totalVotesAvailable = 0;
-  round: number = 0;
+  round: number = 1;
   nameSection = '';
   filteredOptions: Observable<any[]>;
   dataUser: Votes;
@@ -36,9 +36,10 @@ export class VotesComponent implements OnInit {
   ngOnInit(): void {
     this.filteredOptionsFunction();
     this.getUserInfo();
-    
+    this.getVowels('');
+
     this.votes.getSelectedRound().subscribe(round => {
-      if(round >= 0){
+      if (round >= 0) {
         this.round = round;
         this.getUserInfo();
       }
@@ -79,9 +80,17 @@ export class VotesComponent implements OnInit {
   }
 
   getVowels(event: any) {
-    this.votes.getVowelList(this.round, event !== '' ? event.target.value : '').subscribe({
+    const name = event && event.target ? event.target.value : '';
+    if (this.round <= 0) {
+      this.round = 1;
+    }
+    this.votes.getVowelList(this.round, name).subscribe({
       next: (res: Vowel[]) => {
+        this.filteredOptionsFunction();
         this.vowels = res;
+      },
+      error: (err) => {
+        console.error(err);
       }
     });
   }

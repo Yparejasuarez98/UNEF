@@ -25,7 +25,33 @@ th {
 .border-totales {
     background-color: var(--primary-color);
     border-radius: 7px;
-    padding: 5px; 
+    padding: 5px;
     width: 12%;
     color: white;
+}
+
+@media (max-width: 990px) {
+    .border-totales {
+        width: 25%;
+    }
+}
+
+@media (max-width: 710px) {
+    .button-return {
+        width: 30%;
+    }
+}
+@media (max-width: 490px) {
+    .border-totales {
+        width: 30%;
+    }
+    .button-return {
+        width: 40%;
+    }
+}
+
+@media (max-width: 405px) {
+    .border-totales {
+        width: 35%;
+    }
 }

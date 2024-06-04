@@ -31,13 +31,13 @@ export class VotesService {
     return this.http.post<Result>(`http://108.175.10.181:5000/api/v1/vote`, data);
   }
 
-  getRound(section: string){
+  getRound(section: string) {
     return this.http.get<Result>(`http://108.175.10.181:5000/api/v1/rounds?section=${section}`)
   }
 
   private sectionName = new BehaviorSubject<string>('');
   private selectedRoundSubject = new BehaviorSubject<number>(0);
-  
+
   nameSection = this.sectionName.asObservable();
 
   getnameSection(section: string) {
