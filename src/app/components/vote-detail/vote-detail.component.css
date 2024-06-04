@@ -7,3 +7,25 @@
     background-color: var(--primary-color);
     margin-top: 20px;
 }
+
+.no-data-cell {
+    width: 100%;
+    padding: 20px;
+}
+
+th {
+    font-size: 20px;
+    color: var(--primary-color);
+}
+
+.totales {
+    font-size: 16px;
+}
+
+.border-totales {
+    background-color: var(--primary-color);
+    border-radius: 7px;
+    padding: 5px; 
+    width: 12%;
+    color: white;
+}

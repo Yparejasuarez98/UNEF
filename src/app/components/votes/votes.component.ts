@@ -8,14 +8,14 @@ import { VotesService } from './services/votes.service';
 import { Votes, Vowel } from './models/votes';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { Observable, map, startWith } from 'rxjs';
-import { FormControl } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { AsyncPipe } from '@angular/common';
 import { Result } from '../../shared/models/response';
 
 @Component({
   selector: 'app-votes',
   standalone: true,
-  imports: [MatButtonModule, MatIconModule, MatInputModule, MatAutocompleteModule, AsyncPipe],
+  imports: [MatButtonModule, MatIconModule, MatInputModule, MatAutocompleteModule, AsyncPipe, ReactiveFormsModule],
   templateUrl: './votes.component.html',
   styleUrl: './votes.component.css'
 })
@@ -23,26 +23,26 @@ export class VotesComponent implements OnInit {
 
   name = '';
   totalVotesAvailable = 0;
-  round = 1;
+  round: number = 0;
   nameSection = '';
   filteredOptions: Observable<any[]>;
   dataUser: Votes;
   partner = new FormControl<string | any>('');
   vowels: Vowel[];
+  votesQuantity = new FormControl<number | any>(null);
 
-  constructor(private router: Router, private votes: VotesService) {
-    this.dataUser = {
-      votes_total_default: 200,
-      vote_remaining: 100,
-      vote_register_total: 100,
-      vote_delegate: 0,
-      name: "ACELERA ALTERNATIVAS ENERGATICAS SA DE CV",
-      section: "MIXTA"
-    }
-  }
+  constructor(private router: Router, private votes: VotesService) { }
 
   ngOnInit(): void {
     this.filteredOptionsFunction();
+    this.getUserInfo();
+    
+    this.votes.getSelectedRound().subscribe(round => {
+      if(round >= 0){
+        this.round = round;
+        this.getUserInfo();
+      }
+    });
   }
 
   filteredOptionsFunction() {
@@ -66,14 +66,21 @@ export class VotesComponent implements OnInit {
 
   getUserInfo() {
     this.votes.getUserInfo(this.round).subscribe(res => {
-      this.dataUser = res;
+      this.dataUser = {
+        votes_total_default: res.votes_total_default,
+        vote_remaining: res.vote_remaining,
+        vote_register_total: res.vote_register_total,
+        vote_delegate: res.vote_delegate,
+        name: res.name,
+        section: res.section
+      }
+      this.votes.getnameSection(this.dataUser.section);
     });
   }
 
   getVowels(event: any) {
-    this.votes.getVowelList(this.round, event.target.value).subscribe({
+    this.votes.getVowelList(this.round, event !== '' ? event.target.value : '').subscribe({
       next: (res: Vowel[]) => {
-        debugger
         this.vowels = res;
       }
     });
@@ -82,19 +89,25 @@ export class VotesComponent implements OnInit {
   asignVote() {
     const VOTE = {
       round: this.round,
-      nif: this.partner.value,
-      votes_quantity: 10
+      nif_vowel: this.partner.value,
+      votes_quantity: this.votesQuantity.value
     }
     this.votes.asignVote(VOTE).subscribe({
       next: (res: Result) => {
         Swal.fire("Guardado!", res.message, "success");
-      }
+        this.partner.setValue('');
+        this.votesQuantity.setValue(null);
+        this.getUserInfo();
+      },
+      error: (error) => {
+        Swal.fire("Error!", error.error.message, "warning");
+      },
     });
   }
 
   save() {
     Swal.fire({
-      title: `Quieres confirmar el registro de a ${this.nameSection} `,
+      title: `¿Quieres confirmar el registro de ${this.votesQuantity.value} a ${this.partner.value} ?`,
       showDenyButton: true,
       confirmButtonText: "Confirmar",
       denyButtonText: `Cancelar`

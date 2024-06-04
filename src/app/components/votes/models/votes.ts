@@ -9,11 +9,11 @@ export interface Votes {
 
 export interface Vowel {
     name: string;
-    nif: string;
+    nif_vowel: string;
 }
 
 export interface AsignVote {
     round: number;
-    nif: string;
+    nif_vowel: string;
     votes_quantity: number;
 }

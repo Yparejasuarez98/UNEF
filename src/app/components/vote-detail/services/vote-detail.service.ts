@@ -10,8 +10,8 @@ export class VoteDetailService {
 
   constructor(private http: HttpClient) { }
 
-  getList(): Observable<VoteDetail> {
-    return this.http.get<any>(`/api/v1/vote?round=1`).pipe(map(res => {
+  getList(round: number): Observable<VoteDetail> {
+    return this.http.get<any>(`http://108.175.10.181:5000/api/v1/user/vote?round=${round}`).pipe(map(res => {
       return res.data;
     }));
   }

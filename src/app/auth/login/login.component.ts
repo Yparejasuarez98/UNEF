@@ -29,7 +29,7 @@ export class LoginComponent {
     }
     this.loginService.login(this.code.value!).subscribe({
       next: (res: any) => {
-        localStorage.setItem('token', res.token);
+        localStorage.setItem('token', res.data.token);
         this.router.navigateByUrl('/votos');
       }, error: (res) => {
         Swal.fire('Error!', res.error.message, 'error');
