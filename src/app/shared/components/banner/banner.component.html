@@ -7,10 +7,12 @@
         <div class="m-auto my-3">
             <mat-form-field>
                 <mat-label>Vuelta</mat-label>
-                <mat-select [formControl]="section" (selectionChange)="selectRound($event.value)">
-                    <mat-option *ngFor="let round of roundList" [value]="round.round">{{'Ronda' + round.round}}</mat-option>
+                <mat-select [formControl]="round" (selectionChange)="selectRound($event.value)">
+                    @for (round of roundList; track $index) {
+                        <mat-option [value]="round.round">{{'Ronda ' + round.round}}</mat-option>
+                    }
                 </mat-select>
-            </mat-form-field>
+              </mat-form-field>
         </div>
     </div>
 </div>
