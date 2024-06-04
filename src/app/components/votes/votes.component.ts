@@ -35,7 +35,6 @@ export class VotesComponent implements OnInit {
 
   ngOnInit(): void {
     this.filteredOptionsFunction();
-    this.getUserInfo();
     this.getVowels('');
 
     this.votes.getSelectedRound().subscribe(round => {
@@ -66,6 +65,9 @@ export class VotesComponent implements OnInit {
   }
 
   getUserInfo() {
+    if (this.round <= 0) {
+      this.round = 1;
+    }
     this.votes.getUserInfo(this.round).subscribe(res => {
       this.dataUser = {
         votes_total_default: res.votes_total_default,
@@ -96,9 +98,12 @@ export class VotesComponent implements OnInit {
   }
 
   asignVote() {
+    if (this.round <= 0) {
+      this.round = 1;
+    }
     const VOTE = {
       round: this.round,
-      nif_vowel: this.partner.value,
+      nif_vowel: this.partner.value.nif,
       votes_quantity: this.votesQuantity.value
     }
     this.votes.asignVote(VOTE).subscribe({
@@ -116,7 +121,7 @@ export class VotesComponent implements OnInit {
 
   save() {
     Swal.fire({
-      title: `¿Quieres confirmar el registro de ${this.votesQuantity.value} a ${this.partner.value} ?`,
+      title: `¿Quieres confirmar el registro de ${this.votesQuantity.value} a ${this.partner.value.name} ?`,
       showDenyButton: true,
       confirmButtonText: "Confirmar",
       denyButtonText: `Cancelar`

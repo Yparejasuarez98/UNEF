@@ -3,7 +3,7 @@
     <button mat-raised-button (click)="goBack()" class="white primary-color-back button-return"> <mat-icon>arrow_back</mat-icon>
       Regresar</button>
     <div class="row">
-      <div class="votes vote-total col-lg-3 col-md-3 col-sm-6 m-4">Votos totales: {{dataUser?.votes_total_default}}
+      <div class="votes vote-total col-lg-3 col-md-3 col-sm-6 m-4">Votos totales: {{dataUser?.votes_total_default + dataUser?.vote_delegate}}
       </div>
       <div class="votes vote-missing col-lg-3 col-md-3 col-sm-6 m-4">Votos faltantes: {{dataUser?.vote_remaining}}
       </div>

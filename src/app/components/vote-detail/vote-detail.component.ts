@@ -22,10 +22,10 @@ export class VoteDetailComponent {
 
   displayedColumns: string[] = ['socio', 'votes'];
   dataSource = new MatTableDataSource<VoteDetail>();
-  round: number = 0;
+  round: number = 1;
   p = 1;
   currentPage = 1;
-  totales : number = 0
+  totales: number = 0
   listVoteDetail: VoteDetail[] = [];
   dataUser: Votes;
 
@@ -36,7 +36,7 @@ export class VoteDetailComponent {
     this.getUserInfo();
 
     this.votes.getSelectedRound().subscribe(round => {
-      if(round >= 0){
+      if (round >= 0) {
         this.round = round;
         this.getUserInfo();
         this.getList();
@@ -45,6 +45,9 @@ export class VoteDetailComponent {
   }
 
   getList() {
+    if (this.round <= 0) {
+      this.round = 1;
+    }
     this.voteDetailService.getList(this.round).subscribe({
       next: (res: any) => {
         this.dataSource = new MatTableDataSource(res);
@@ -53,6 +56,9 @@ export class VoteDetailComponent {
   }
 
   getUserInfo() {
+    if (this.round <= 0) {
+      this.round = 1;
+    }
     this.votes.getUserInfo(this.round).subscribe(res => {
       this.dataUser = {
         votes_total_default: res.votes_total_default,
@@ -63,7 +69,7 @@ export class VoteDetailComponent {
         section: res.section
       }
       this.votes.getnameSection(this.dataUser.section);
-      if(this.dataSource.data.length < 0){
+      if (this.dataSource.data.length < 0) {
         this.totales = 0
       } else {
         this.totales = this.dataUser.vote_register_total;

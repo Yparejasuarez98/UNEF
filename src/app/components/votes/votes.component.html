@@ -1,13 +1,13 @@
 <div class="container">
     <div class="text-center mt-4">
         <h4 class="color-primary">
-            Hola {{dataUser?.name}} tienes disponible {{dataUser?.votes_total_default}} votos de tu sección
+            Hola {{dataUser?.name}} tienes disponible {{dataUser?.vote_remaining}} votos de tu sección
             {{dataUser?.section}}
         </h4>
     </div>
     <div class="content-votes d-flex justify-content-around">
         <div class="row">
-            <div class="votes vote-total col-lg-3 col-md-3 col-sm-6 m-3">Votos totales: {{dataUser?.votes_total_default}}
+            <div class="votes vote-total col-lg-3 col-md-3 col-sm-6 m-3">Votos totales: {{dataUser?.votes_total_default + dataUser?.vote_delegate}}
             </div>
             <div class="votes vote-missing col-lg-3 col-md-3 col-sm-6 m-3">Votos faltantes: {{dataUser?.vote_remaining}}
             </div>
