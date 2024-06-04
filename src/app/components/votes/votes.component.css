@@ -60,11 +60,30 @@
         margin-right: 10px;
         height: 45px;
     }
+
+    .row {
+        justify-content: center;
+    }
+
+    .input-socio {
+        width: 500px
+    }
+}
+
+@media (max-width: 650px) {
+    .content-button-input {
+        display: flex;
+    }
 }
 
 @media (max-width: 520px) {
     .width {
         width: 350px;
+    }
+    .content-button-input {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 }
 

@@ -4,16 +4,19 @@
             Hola {{dataUser?.name}} tienes disponible {{dataUser?.vote_remaining}} votos de tu sección
             {{dataUser?.section}}
         </h4>
+        <h5 class="color-primary">
+            Sus votos serán asignados a la vuelta  {{round}}
+        </h5>
     </div>
     <div class="content-votes d-flex justify-content-around">
         <div class="row">
-            <div class="votes vote-total col-lg-3 col-md-3 col-sm-6 m-3">Votos totales: {{dataUser?.votes_total_default + dataUser?.vote_delegate}}
+            <div class="votes vote-total col-lg-3 col-md-3 col-sm-12 m-3">Votos totales: {{dataUser?.votes_total_default + dataUser?.vote_delegate}}
             </div>
-            <div class="votes vote-missing col-lg-3 col-md-3 col-sm-6 m-3">Votos faltantes: {{dataUser?.vote_remaining}}
+            <div class="votes vote-missing col-lg-3 col-md-3 col-sm-12 m-3">Votos faltantes: {{dataUser?.vote_remaining}}
             </div>
-            <div class="votes vote-delegates col-lg-3 col-md-3 col-sm-6 m-3">Votos delegados: {{dataUser?.vote_delegate}}
+            <div class="votes vote-delegates col-lg-3 col-md-3 col-sm-12 m-3">Votos delegados: {{dataUser?.vote_delegate}}
             </div>
-            <div class="votes vote-register col-lg-3 col-md-3 col-sm-6 m-3">Votos registrados:
+            <div class="votes vote-register col-lg-3 col-md-3 col-sm-12 m-3">Votos registrados:
                 {{dataUser?.vote_register_total}} </div>
         </div>
     </div>
@@ -34,8 +37,8 @@
         </mat-form-field>
 
         <p class="mt-5 color-primary ">Digita la cantidad de votos a registrar</p>
-        <div class="mr-4">
-            <mat-form-field class="input-socio" >
+        <div class="mr-4 content-button-input">
+            <mat-form-field class="input-socio col-12" >
                 <mat-label>Cantidad de votos</mat-label>
                 <input type="number" matInput [formControl]="votesQuantity">
             </mat-form-field>

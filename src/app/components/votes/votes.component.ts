@@ -108,13 +108,13 @@ export class VotesComponent implements OnInit {
     }
     this.votes.asignVote(VOTE).subscribe({
       next: (res: Result) => {
-        Swal.fire("Guardado!", res.message, "success");
+        Swal.fire("Guardado!", 'Voto asignado con exito !', "success");
         this.partner.setValue('');
         this.votesQuantity.setValue(null);
         this.getUserInfo();
       },
       error: (error) => {
-        Swal.fire("Error!", error.error.message, "warning");
+        Swal.fire("Error!", 'Hubo un problema con su solicitud. Es posible que sus votos ya hayan sido asignados o que haya ocurrido un error.', "warning");
       },
     });
   }

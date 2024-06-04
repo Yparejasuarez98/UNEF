@@ -1,13 +1,12 @@
-
 .vuelta-uno {
     background-color: var(--background-color-button-missing) !important;
-    color: var(--color-white) !important; 
+    color: var(--color-white) !important;
     margin-right: 50px;
 }
 
 .vuelta-dos {
     background-color: var(--background-color-button-delegates) !important;
-    color: var(--color-white) !important; 
+    color: var(--color-white) !important;
 }
 
 
@@ -17,4 +16,18 @@ img {
 
 .content-img {
     width: 20%;
+    align-items: center;
+    display: flex;
+}
+
+@media (max-width: 760px) {
+    .content-img {
+        width: 45%;
+    }
+}
+
+@media (max-width: 380px) {
+    .content-img {
+        width: 40%;
+    }
 }
